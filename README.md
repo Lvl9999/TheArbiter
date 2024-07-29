@@ -3,4 +3,5 @@
 
 ```lua
 getgenv().AutoFindingArbiter = true;
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/TheArbiter/main/AutoFinder"))();```
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/TheArbiter/main/AutoFinder"))();
+```
