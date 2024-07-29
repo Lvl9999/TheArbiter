@@ -1,0 +1,31 @@
+-- getgenv().AutoFindingArbiter = true;
+
+repeat task.wait(0.1) until game:IsLoaded();
+task.spawn(function()
+    while getgenv().AutoFindingArbiter == true do
+        pcall(function()
+            if not workspace.Living:FindFirstChild("Arbiter") then
+                if not getgenv().ServerHopped then getgenv().ServerHopped = true;
+                    repeat
+                        local Servers = {}
+
+                        for i,v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/"..game.PlaceId .."/servers/Public?sortOrder=Asc&limit=100")).data) do
+                            if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+                                table.insert(Servers,v.id);
+                            end
+                        end
+
+                        if #Servers > 0 then
+                            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, Servers[math.random(1,#Servers)]);
+                        end
+
+                        task.wait(1.5);
+                    until false
+                end
+            else
+                getgenv().AutoFindingArbiter = false;
+            end
+        end)
+        task.wait(0.35);
+    end
+end)
