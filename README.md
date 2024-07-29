@@ -5,4 +5,4 @@
 getgenv().AutoFindingArbiter = true;
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/TheArbiter/main/AutoFinder"))();
 ```
-#### Put in your autoexe file.
+#### Paste in your autoexe file.
