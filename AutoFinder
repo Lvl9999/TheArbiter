@@ -9,7 +9,7 @@ task.spawn(function()
                     repeat
                         local Servers = {}
 
-                        for i,v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/"..game.PlaceId .."/servers/Public?sortOrder=Asc&limit=100")).data) do
+                        for i,v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Asc&limit=100")).data) do
                             if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
                                 table.insert(Servers,v.id);
                             end
