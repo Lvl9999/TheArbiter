@@ -1,31 +1,40 @@
 -- getgenv().AutoFindingArbiter = true;
 
 repeat task.wait(0.1) until game:IsLoaded();
+local BoredLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Lvl9999/Bored/main/Backup"))();
+
+local ServerList = 11805362789;
+local SakuraStand = 8534845015;
+
 task.spawn(function()
     while getgenv().AutoFindingArbiter == true do
         pcall(function()
-            if not workspace.Living:FindFirstChild("Arbiter") then
-                if not getgenv().ServerHopped then getgenv().ServerHopped = true;
-                    repeat
-                        local Servers = {}
-
-                        for i,v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Asc&limit=100")).data) do
-                            if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
-                                table.insert(Servers,v.id);
-                            end
-                        end
-
-                        if #Servers > 0 then
-                            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, Servers[math.random(1,#Servers)]);
-                        end
-
-                        task.wait(1.5);
-                    until false
+            if game.PlaceId == ServerList then
+                local Frames = {}
+                for _,x in ipairs(game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("ServerListGui"):WaitForChild("List"):GetChildren()) do
+                    if x:IsA("Frame") then
+                        table.insert(Frames,x);
+                    end
                 end
-            else
-                getgenv().AutoFindingArbiter = false;
+                
+                if #Frames > 0 then
+                    local Selected = Frames[math.random(#Frames)]
+                    BoredLibrary.prompt("Sakura Hub 🌸","Teleporting to "..Selected.Name,0.35);
+                    local args = {[1] = Selected.Name};
+                    game:GetService("ReplicatedStorage"):WaitForChild("TP"):FireServer(unpack(args))
+                end
+            elseif game.PlaceId == SakuraStand then
+                if not workspace.Living:FindFirstChild("Arbiter") then
+                    if not getgenv().ServerHopped then getgenv().ServerHopped = true
+                        BoredLibrary.prompt("Sakura Hub 🌸","Arbiter Is Not Here...",0.75);BoredLibrary.prompt("Sakura Hub 🌸","Teleporting to ServerList",0.5);
+                        game:GetService("TeleportService"):Teleport(ServerList,game.Players.LocalPlayer);
+                    end
+                else
+                    getgenv().AutoFindingArbiter = false;
+                    BoredLibrary.prompt("Sakura Hub 🌸","Arbiter Is Here!",1.5);
+                end
             end
         end)
-        task.wait(0.35);
+        task.wait(1.55);
     end
 end)
