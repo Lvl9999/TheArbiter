@@ -19,7 +19,7 @@ task.spawn(function()
                 
                 if #Frames > 0 then
                     local Selected = Frames[math.random(#Frames)]
-                    BoredLibrary.prompt("Sakura Hub 🌸","Teleporting to "..Selected.Name,0.35);
+                    BoredLibrary.prompt("Sakura Hub 🌸","Teleporting to: "..Selected.Name,0.35);
                     local args = {[1] = Selected.Name};
                     game:GetService("ReplicatedStorage"):WaitForChild("TP"):FireServer(unpack(args))
                 end
