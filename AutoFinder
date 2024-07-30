@@ -30,7 +30,7 @@ task.spawn(function()
                     BoredLibrary.prompt("Sakura Hub    🌸","Arbiter Is Not Here...",0.75);BoredLibrary.prompt("Sakura Hub    🌸","Teleporting to ServerList...",0.5);
                     local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = "http://www.roblox.com/asset/?id=289556450";
                     Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();task.wait(0.1);
-                    game:GetService("TeleportService"):Teleport(ServerList,game.Players.LocalPlayer);
+                    game:GetService("ReplicatedStorage"):WaitForChild("GlobalUsedRemotes"):WaitForChild("TPtoServerList"):FireServer();
                 else
                     getgenv().AutoFindingArbiter = false;
                     local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = "http://www.roblox.com/asset/?id=8097518145";
