@@ -21,11 +21,11 @@ task.spawn(function()
                     local Selected = Frames[math.random(#Frames)]
                     BoredLibrary.prompt("Sakura Hub 🌸","Teleporting to: "..Selected.Name,0.35);
                     local args = {[1] = Selected.Name};
-                    game:GetService("ReplicatedStorage"):WaitForChild("TP"):FireServer(unpack(args))
+                    game:GetService("ReplicatedStorage"):WaitForChild("TP"):FireServer(unpack(args));
                 end
             elseif game.PlaceId == SakuraStand then
                 if not workspace.Living:FindFirstChild("Arbiter") then
-                    if not getgenv().ServerHopped then getgenv().ServerHopped = true
+                    if not getgenv().ServerHopped then getgenv().ServerHopped = true;
                         BoredLibrary.prompt("Sakura Hub 🌸","Arbiter Is Not Here...",0.75);BoredLibrary.prompt("Sakura Hub 🌸","Teleporting to ServerList",0.5);
                         game:GetService("TeleportService"):Teleport(ServerList,game.Players.LocalPlayer);
                     end
