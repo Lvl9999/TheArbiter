@@ -31,7 +31,7 @@ task.spawn(function()
                     end
                 else
                     getgenv().AutoFindingArbiter = false;
-                    BoredLibrary.prompt("Sakura Hub 🌸","Arbiter Is Here!",1.5);
+                    BoredLibrary.prompt("Sakura Hub 🌸","Arbiter Is Here!");
                 end
             end
         end)
