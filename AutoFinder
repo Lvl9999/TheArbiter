@@ -16,25 +16,29 @@ task.spawn(function()
                         table.insert(Frames,x);
                     end
                 end
-                
+
                 if #Frames > 0 then
                     local Selected = Frames[math.random(#Frames)]
-                    BoredLibrary.prompt("Sakura Hub 🌸","Teleporting to: "..Selected.Name,0.35);
+                    BoredLibrary.prompt("Sakura Hub    🌸","Teleporting to: "..Selected.Name,0.35);
+                    local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = "http://www.roblox.com/asset/?id=289556450";
+                    Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();task.wait(0.1);
                     local args = {[1] = Selected.Name};
                     game:GetService("ReplicatedStorage"):WaitForChild("TP"):FireServer(unpack(args));
                 end
             elseif game.PlaceId == SakuraStand then
-                if not workspace.Living:FindFirstChild("Arbiter") then
-                    if not getgenv().ServerHopped then getgenv().ServerHopped = true;
-                        BoredLibrary.prompt("Sakura Hub 🌸","Arbiter Is Not Here...",0.75);BoredLibrary.prompt("Sakura Hub 🌸","Teleporting to ServerList",0.5);
-                        game:GetService("TeleportService"):Teleport(ServerList,game.Players.LocalPlayer);
-                    end
+                if not workspace.Living:FindFirstChild("Arbiter") or not workspace.Living["Arbiter"]:FindFirstChild("Head") then
+                    BoredLibrary.prompt("Sakura Hub    🌸","Arbiter Is Not Here...",0.75);BoredLibrary.prompt("Sakura Hub    🌸","Teleporting to ServerList...",0.5);
+                    local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = "http://www.roblox.com/asset/?id=289556450";
+                    Sound.Volume = 10;Sound.Looped = false;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();task.wait(0.1);
+                    game:GetService("TeleportService"):Teleport(ServerList,game.Players.LocalPlayer);
                 else
                     getgenv().AutoFindingArbiter = false;
-                    BoredLibrary.prompt("Sakura Hub 🌸","Arbiter Is Here!");
+                    local Sound = Instance.new("Sound");Sound.Name = "Sound";Sound.SoundId = "http://www.roblox.com/asset/?id=8097518145";
+                    Sound.Volume = 10;Sound.Looped = true;Sound.Archivable = false;Sound.Parent = game.Workspace;Sound:Play();
+                    BoredLibrary.prompt("Sakura Hub    🌸","Arbiter Is Here!");
                 end
             end
         end)
-        task.wait(1.55);
+        task.wait(1.75);
     end
 end)
